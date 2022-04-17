@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Octopressで見出しの目次を作る方法 | 割り箸ポテチ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="割り箸ポテチ, 河原太介,octopress,目次,見出し">
+  
+  <meta name="description" content="調べて見つかった方法だとうまく行かなかったので、少し筋の悪い方法ですが自分で考えた方法をメモしておきます。 追記：ブログエンジンをHexoに移行しましたので、この記事の内容は現状と齟齬を生じている可能性があります。 最終的には、この記事に出ているような見出しの目次を作ることができました。この方法の特徴は下記の通りです。  日本語の見出しでもエラーにならず出力される。 Octopressデフォルトの">
+<meta name="keywords" content="octopress,目次,見出し">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octopressで見出しの目次を作る方法">
+<meta property="og:url" content="https://chopschips.net/blog/2014/06/16/octopress-toc/index.html">
+<meta property="og:site_name" content="割り箸ポテチ">
+<meta property="og:description" content="調べて見つかった方法だとうまく行かなかったので、少し筋の悪い方法ですが自分で考えた方法をメモしておきます。 追記：ブログエンジンをHexoに移行しましたので、この記事の内容は現状と齟齬を生じている可能性があります。 最終的には、この記事に出ているような見出しの目次を作ることができました。この方法の特徴は下記の通りです。  日本語の見出しでもエラーにならず出力される。 Octopressデフォルトの">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2017-10-23T13:42:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Octopressで見出しの目次を作る方法">
+<meta name="twitter:description" content="調べて見つかった方法だとうまく行かなかったので、少し筋の悪い方法ですが自分で考えた方法をメモしておきます。 追記：ブログエンジンをHexoに移行しましたので、この記事の内容は現状と齟齬を生じている可能性があります。 最終的には、この記事に出ているような見出しの目次を作ることができました。この方法の特徴は下記の通りです。  日本語の見出しでもエラーにならず出力される。 Octopressデフォルトの">
+<meta name="twitter:creator" content="@kwhrtsk">
+  
+    <link rel="alternative" href="/atom.xml" title="割り箸ポテチ" type="application/atom+xml">
+  
+  
+  <link href='//fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">割り箸ポテチ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">ソフトウェアエンジニアリング一般についてのメモです。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chopschips.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-octopress-toc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/06/16/octopress-toc/" class="article-date">
+  <time datetime="2014-06-16T13:00:01.000Z" itemprop="datePublished">2014-06-16</time>
+</a>
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Octopressで見出しの目次を作る方法
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/https://chopschips.net/blog/2014/06/16/octopress-toc/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://chopschips.net/blog/2014/06/16/octopress-toc/" data-via="{{ theme.twitter }}" data-counturl="https://chopschips.net/blog/2014/06/16/octopress-toc/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="https://chopschips.net/blog/2014/06/16/octopress-toc/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p>調べて見つかった方法だとうまく行かなかったので、少し筋の悪い方法ですが自分で考えた方法をメモしておきます。</p>
+<p>追記：ブログエンジンをHexoに移行しましたので、この記事の内容は現状と齟齬を生じている可能性があります。</p>
+<p>最終的には、この記事に出ているような見出しの目次を作ることができました。この方法の特徴は下記の通りです。</p>
+<ol>
+<li>日本語の見出しでもエラーにならず出力される。</li>
+<li>OctopressデフォルトのMarkdownパーサであるrdiscountを使用している。</li>
+<li>リンクが絶対パスになる(記事一覧画面のような「続きを読む(Read On)」で目次のリンク先が省略されるような状況でも有効なリンクになる)</li>
+<li>リンクが重複しない(後述)</li>
+</ol>
+<p>前半はアプローチのメモです。実現方法は解決案以降に書いています。</p>
+<a id="more"></a>
+<h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><ol>
+<li><a href="https://github.com/imathis/octopress/commit/9bc4bb02ee3318d07b6b1ecd838a09461eff627b" target="_blank" rel="noopener">2014-05-22のコミット</a> 以降のoctopressをcloneしていること。</li>
+<li>Markdownパーサとして<a href="https://github.com/davidfstr/rdiscount" target="_blank" rel="noopener">rdiscount</a>を使用していること。</li>
+</ol>
+<h1 id="目次のサンプルと見出しの生成に失敗するまで"><a href="#目次のサンプルと見出しの生成に失敗するまで" class="headerlink" title="目次のサンプルと見出しの生成に失敗するまで"></a>目次のサンプルと見出しの生成に失敗するまで</h1><p>gemはvendor/bundle以下にインストールしてあると仮定します。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> clone git://github.com/imathis/octopress.git octopress
+$ bundle <span class="token function">install</span> --path<span class="token operator">=</span>vendor/bundle
+$ bundle <span class="token function">exec</span> rake <span class="token function">install</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>見出し機能を有効にします。</p>
+<pre class="line-numbers language-diff"><code class="language-diff">diff --git _config.yml _config.yml
+index e51e7c3..0969488 100644
+<span class="token coord">--- _config.yml</span>
+<span class="token coord">+++ _config.yml</span>
+@@ -39,6 +39,8 @@ rdiscount:
+     - autolink
+     - footnotes
+     - smart
+<span class="token inserted">+    - generate_toc</span>
+<span class="token inserted">+  toc_token: "{!TOC}"</span>
+ pygments: false # default python pygments have been replaced by pygments.rb
+
+ paginate: 10          # Posts per page on the blog index
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下、投稿例です。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ bundle <span class="token function">exec</span> rake <span class="token string">'new_post[octopress_toc]'</span>
+$ <span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">'EOF'</span> <span class="token operator">></span> source/_posts/2014-06-16-octopress-toc.markdown
+layout: post
+title: <span class="token string">"octopress_toc"</span>
+date: 2014-06-16 09:54:31 +0900
+comments: <span class="token boolean">true</span>
+categories:
+---
+
+<span class="token punctuation">{</span><span class="token operator">!</span>TOC<span class="token punctuation">}</span>
+
+見出し目次のテストです。
+
+<span class="token operator">&lt;</span><span class="token operator">!</span>-- <span class="token function">more</span> --<span class="token operator">></span>
+
+<span class="token comment" spellcheck="true"># 見出し１</span>
+
+本文
+
+<span class="token comment" spellcheck="true">## 見出し２</span>
+
+本文
+
+<span class="token comment" spellcheck="true">## 見出し３</span>
+
+本文
+EOF
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>このままgenerateしようとするとエラーになります。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ bundle <span class="token function">exec</span> rake generate
+<span class="token comment" spellcheck="true">## Generating Site with Jekyll</span>
+identical source/stylesheets/screen.css
+Configuration from octopress/_config.yml
+Building site: <span class="token function">source</span> -<span class="token operator">></span> public
+octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb:140:in `gsub<span class="token operator">!</span><span class="token string">': incompatible character encodings: ASCII-8BIT and UTF-8 (Encoding::CompatibilityError)
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb:140:in `convert'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/convertible.rb:46:in `transform<span class="token string">'
+        from octopress/plugins/post_filters.rb:150:in `transform'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/convertible.rb:88:in `do_layout<span class="token string">'
+        from octopress/plugins/post_filters.rb:167:in `do_layout'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/post.rb:195:in `render<span class="token string">'
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/site.rb:200:in `block in render'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/site.rb:199:in `each<span class="token string">'
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/site.rb:199:in `render'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/lib/jekyll/site.rb:41:in `process<span class="token string">'
+        from octopress/vendor/bundle/ruby/2.1.0/gems/jekyll-0.12.0/bin/jekyll:264:in `&lt;top (required)>'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/bin/jekyll:23:in `load<span class="token string">'
+        from octopress/vendor/bundle/ruby/2.1.0/bin/jekyll:23:in `&lt;main>'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="既知のパッチ"><a href="#既知のパッチ" class="headerlink" title="既知のパッチ"></a>既知のパッチ</h1><p>前述のエラーについてはパッチがあります。</p>
+<p>参考：<a href="http://tokkonopapa.github.io/blog/2013/02/23/octopress-toc/" target="_blank" rel="noopener">octopressで見出しの目次を記事に埋め込む方法 - T.I.D.</a></p>
+<p>jekyll本体に手を入れることになるので、ローカルにチェックアウトします。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> vendor/github
+$ <span class="token function">git</span> clone git@github.com:jekyll/jekyll -b v0.12.0 vendor/github/jekyll
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Gemfileを修正して、<code>bundle install --path=vendor/bundle</code>します。</p>
+<pre class="line-numbers language-diff"><code class="language-diff">diff --git Gemfile Gemfile
+index cd8ce57..c87d7ec 100644
+<span class="token coord">--- Gemfile</span>
+<span class="token coord">+++ Gemfile</span>
+@@ -2,7 +2,7 @@ source "https://rubygems.org"
+
+ group :development do
+   gem 'rake', '~> 0.9'
+<span class="token deleted">-  gem 'jekyll', '~> 0.12'</span>
+<span class="token inserted">+  gem 'jekyll', :path => "vendor/github/jekyll"</span>
+   gem 'rdiscount', '~> 2.0.7'
+   gem 'pygments.rb', '~> 0.3.4'
+   gem 'RedCloth', '~> 4.2.9'
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>jekyllのコードを修正します。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> vendor/github/jekyll
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-diff"><code class="language-diff">diff --git lib/jekyll/converters/markdown.rb lib/jekyll/converters/markdown.rb
+index 3c6ba53..b866617 100644
+<span class="token coord">--- lib/jekyll/converters/markdown.rb</span>
+<span class="token coord">+++ lib/jekyll/converters/markdown.rb</span>
+@@ -137,7 +137,7 @@ module Jekyll
+           rd = RDiscount.new(content, *@rdiscount_extensions)
+           html = rd.to_html
+           if rd.generate_toc and html.include?(@config['rdiscount']['toc_token'])
+<span class="token deleted">-            html.gsub!(@config['rdiscount']['toc_token'], rd.toc_content)</span>
+<span class="token inserted">+            html.gsub!(@config['rdiscount']['toc_token'], rd.toc_content.force_encoding("utf-8"))</span>
+           end
+           html
+         when 'maruku'
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>もう一度generateしてみます。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">% bundle <span class="token function">exec</span> rake generate
+<span class="token comment" spellcheck="true">## Generating Site with Jekyll</span>
+identical source/stylesheets/screen.css
+Configuration from octopress/_config.yml
+Building site: <span class="token function">source</span> -<span class="token operator">></span> public
+octopress/plugins/raw.rb:11:in `gsub<span class="token string">': invalid byte sequence in UTF-8 (ArgumentError)
+        from octopress/plugins/raw.rb:11:in `unwrap'</span>
+        from octopress/plugins/octopress_filters.rb:18:in `post_filter<span class="token string">'
+        from octopress/plugins/octopress_filters.rb:33:in `post_render'</span>
+        from octopress/plugins/post_filters.rb:124:in `block <span class="token keyword">in</span> post_render<span class="token string">'
+        from octopress/plugins/post_filters.rb:123:in `each'</span>
+        from octopress/plugins/post_filters.rb:123:in `post_render<span class="token string">'
+        from octopress/plugins/post_filters.rb:151:in `transform'</span>
+        from octopress/vendor/github/jekyll/lib/jekyll/convertible.rb:88:in `do_layout<span class="token string">'
+        from octopress/plugins/post_filters.rb:167:in `do_layout'</span>
+        from octopress/vendor/github/jekyll/lib/jekyll/post.rb:195:in `render<span class="token string">'
+        from octopress/vendor/github/jekyll/lib/jekyll/site.rb:200:in `block in render'</span>
+        from octopress/vendor/github/jekyll/lib/jekyll/site.rb:199:in `each<span class="token string">'
+        from octopress/vendor/github/jekyll/lib/jekyll/site.rb:199:in `render'</span>
+        from octopress/vendor/github/jekyll/lib/jekyll/site.rb:41:in `process<span class="token string">'
+        from octopress/vendor/github/jekyll/bin/jekyll:264:in `&lt;top (required)>'</span>
+        from octopress/vendor/bundle/ruby/2.1.0/bin/jekyll:23:in `load<span class="token string">'
+        from octopress/vendor/bundle/ruby/2.1.0/bin/jekyll:23:in `&lt;main>'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>別のエラーが出ました。</p>
+<h1 id="次の一手"><a href="#次の一手" class="headerlink" title="次の一手"></a>次の一手</h1><p>いくつかの方法が考えられます。</p>
+<ol>
+<li>別のパーサを使う。(redcarpet, kramdown)</li>
+<li>rdiscount, jekyllのバージョンを上げる。</li>
+</ol>
+<p>redcarpetについては別の問題が発生してうまく行きませんでした。
+<a href="http://octopress.org" target="_blank" rel="noopener">octopressのドキュメント</a>自体がredcarpetに移行しているみたいなので本命だったのですが諦めて別の方法を探しました。</p>
+<p>kramdownはcodeblockの利用に制限がかかりそうだったので見送りました。</p>
+<p>rdiscountとjekyllのバージョンをあげたら解決する可能性があるかと思ったのですが、両方ともmasterのHEADに持っていくだけではダメでした。
+そもそもoctopressが使っているjekyllのバージョンはかなり古いので、互換性の面で不安もありました。</p>
+<p>というわけで諦めて強引に修正することにしました。(今回は多少汚い手を使っても困るのは俺だけだし)</p>
+<h1 id="問題点は何か"><a href="#問題点は何か" class="headerlink" title="問題点は何か"></a>問題点は何か</h1><p>そもそもの問題点は2つあります。</p>
+<ol>
+<li>rdiscountの出力するtocをクリーンなutf-8に変換できない。</li>
+<li>rdiscountが出力する見出しのアンカータグのname属性が重複する可能性がある。</li>
+</ol>
+<p>前者はjekyllのコード修正後に発生したエラーの原因です。<code>force_encoding</code>するだけでは不十分でした。</p>
+<p>ただ、後者のほうがより重要で、これがあるかぎり頑張って前者を解決してもダメです。
+わかり易い例を示します。</p>
+<p><code>`</code> ruby toc_test.rb
+require ‘rdiscount’</p>
+<p>rd = RDiscount.new(&lt;&lt;-EOF, :autolink, :footnotes, :smart, :generate_toc)</p>
+<h1 id="ヘッダ１"><a href="#ヘッダ１" class="headerlink" title="ヘッダ１"></a>ヘッダ１</h1><p>本文1</p>
+<h2 id="ヘッダ２"><a href="#ヘッダ２" class="headerlink" title="ヘッダ２"></a>ヘッダ２</h2><p>本文2
+EOF</p>
+<p>puts rd.to_html</p>
+<pre><code>
+``` bash
+$ bundle exec ruby toc_test.rb
+&lt;a name=&quot;L............&quot;&gt;&lt;/a&gt;
+&lt;h1&gt;ヘッダ１&lt;/h1&gt;
+
+&lt;p&gt;本文1&lt;/p&gt;
+
+&lt;a name=&quot;L............&quot;&gt;&lt;/a&gt;
+&lt;h2&gt;ヘッダ２&lt;/h2&gt;
+
+&lt;p&gt;本文2&lt;/p&gt;
+</code></pre><p>ヘッダ１、ヘッダ２はname属性が同じになるようにあえて全角数字で書いています。</p>
+<p>rdiscountに下記のようなコードがあるので、おそらく意図した動作なのでしょう。
+ただ、アルファベット以外の見出しはすべて”.”に”mangle”されてしまうので、
+日本語で見出しを書くとたまたま長さが同じになったときにリンクが重複します。</p>
+<pre><code>// vendor/bundle/ruby/2.1.0/gems/rdiscount-2.0.7.3/ext/mkdio.c
+
+/* write out a Cstring, mangled into a form suitable for `&lt;a href=` or `&lt;a id=`
+ */
+void
+mkd_string_to_anchor(char *s, int len, mkd_sta_function_t outchar,
+                                       void *out, int labelformat)
+{
+    unsigned char c;
+
+    int i, size;
+    char *line;
+
+    size = mkd_line(s, len, &amp;line, IS_LABEL);
+
+    if ( labelformat &amp;&amp; size &amp;&amp; !isalpha(line[0]) )
+        (*outchar)(&#39;L&#39;,out);
+    for ( i=0; i &lt; size ; i++ ) {
+        c = line[i];
+        if ( labelformat ) {
+            if ( isalnum(c) || (c == &#39;_&#39;) || (c == &#39;:&#39;) || (c == &#39;-&#39;) || (c == &#39;.&#39; ) )
+                (*outchar)(c, out);
+            else
+                (*outchar)(&#39;.&#39;,out);
+        }
+        else
+            (*outchar)(c,out);
+    }
+
+    if (line)
+        free(line);
+}
+</code></pre><h1 id="解決案"><a href="#解決案" class="headerlink" title="解決案"></a>解決案</h1><p>以下の方法を取りました。</p>
+<ul>
+<li>jekyllを修正して、<code>RDiscount#toc_content</code>をブログ本文のドキュメントに挿入する前後でHTMLを書き換える。<ul>
+<li>本文のアンカータグのname属性を<code>section_#{n}</code>というフォーマットの連番に書き換える。</li>
+<li><code>RDiscount#toc_content</code>のリンクを上記で書き換えたアンカーに置換する。</li>
+</ul>
+</li>
+</ul>
+<p>差分は下記のとおりです。Nokogiriを使ってます。
+あと<code>RDiscount#toc_content</code>の不正なバイトを綺麗にするために<code>String#scrub</code>を使っているのでruby2.1系じゃないと動きません。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> vendor/github/jekyll
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-diff"><code class="language-diff">diff --git jekyll.gemspec jekyll.gemspec
+index f88d073..e9a09b4 100644
+<span class="token coord">--- jekyll.gemspec</span>
+<span class="token coord">+++ jekyll.gemspec</span>
+@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
+   s.add_runtime_dependency('maruku', "~> 0.5")
+   s.add_runtime_dependency('kramdown', "~> 0.13.4")
+   s.add_runtime_dependency('pygments.rb', "~> 0.3.2")
+<span class="token inserted">+  s.add_runtime_dependency('nokogiri', "~> 1.6.1")</span>
+
+   s.add_development_dependency('rake', "~> 0.9")
+   s.add_development_dependency('rdoc', "~> 3.11")
+diff --git lib/jekyll/converters/markdown.rb lib/jekyll/converters/markdown.rb
+index 3c6ba53..31f0e9a 100644
+<span class="token coord">--- lib/jekyll/converters/markdown.rb</span>
+<span class="token coord">+++ lib/jekyll/converters/markdown.rb</span>
+<span class="token coord">@@ -1,3 +1,5 @@</span>
+<span class="token inserted">+require 'nokogiri'</span>
+<span class="token inserted">+</span>
+ module Jekyll
+
+   class MarkdownConverter &lt; Converter
+@@ -137,7 +139,15 @@ module Jekyll
+           rd = RDiscount.new(content, *@rdiscount_extensions)
+           html = rd.to_html
+           if rd.generate_toc and html.include?(@config['rdiscount']['toc_token'])
+<span class="token deleted">-            html.gsub!(@config['rdiscount']['toc_token'], rd.toc_content)</span>
+<span class="token inserted">+            doc = Nokogiri::HTML::DocumentFragment.parse(rd.to_html)</span>
+<span class="token inserted">+            toc  = Nokogiri::HTML::DocumentFragment.parse(rd.toc_content.force_encoding("utf-8").scrub("."))</span>
+<span class="token inserted">+            doc.css("a[name]").each_with_index{|elem, i| elem['name'] = "section_#{i}" }</span>
+<span class="token inserted">+            anchors = doc.css("a[name]")</span>
+<span class="token inserted">+            toc.css("a[href]").each_with_index{|elem, i|</span>
+<span class="token inserted">+              elem["href"] = "#" + anchors[i]["name"]</span>
+<span class="token inserted">+            }</span>
+<span class="token inserted">+            html = doc.to_html</span>
+<span class="token inserted">+            toc = html.gsub!(@config['rdiscount']['toc_token'], toc.to_html)</span>
+           end
+           html
+         when 'maruku'
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ここまでで見出し目次は出力されるようになりますが、アンカータグは<code>&lt;a href=&quot;#section_0&quot;&gt;見出し１&lt;/a&gt;</code>のような相対パスでのリンクになります。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#section_0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>categories:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#section_1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>見出し１<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#section_2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>見出し２<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#section_3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>見出し３<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>見出し目次のテストです。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- more --></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section_1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>見出し１<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section_1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>見出し１<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>本文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section_2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>見出し２<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>本文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section_3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>見出し３<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>本文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>そのため、投稿の単体ページでは意図したように動作しますが、投稿一覧ページに表示されていて、かつ参照先が<code>&lt;!-- more --&gt;</code>によって省略されているような場合には意図したように動作しません。</p>
+<p>これを解決するためにプラグインを書きます。</p>
+<p><code>`</code> ruby plugins/toc_linker.rb
+require ‘nokogiri’</p>
+<p>module Jekyll
+  require_relative ‘post_filters’</p>
+<p>  class TocLinker &lt; PostFilter
+    def post_render(post)
+      if post.is_post?
+        doc = Nokogiri::HTML::DocumentFragment.parse(post.content)
+        doc.css(“a[href]”).each do |elem|
+          next if elem[“href”] !~ /^#/
+          elem[“href”] = post.full_url + elem[“href”]
+        end
+        post.content = doc.to_html
+      end
+    end
+  end
+end</p>
+<pre><code>
+これにより、下記のようにアンカータグのリンク先を絶対パスに書き換えてしまいます。
+
+``` html
+&lt;ul&gt;
+ &lt;li&gt;&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://yoursite.com/blog/2014/06/16/octopress-toc/#section_0&quot;&gt;categories:&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href=&quot;http://yoursite.com/blog/2014/06/16/octopress-toc/#section_1&quot;&gt;見出し１&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://yoursite.com/blog/2014/06/16/octopress-toc/#section_2&quot;&gt;見出し２&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://yoursite.com/blog/2014/06/16/octopress-toc/#section_3&quot;&gt;見出し３&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h1 id="フィード"><a href="#フィード" class="headerlink" title="フィード"></a>フィード</h1><p>ついでに出力されるフィードにも手を入れておきます。</p>
+<p><code>&lt;!-- more --&gt;</code>で省略している箇所はフィードに含めず、<br>それよりも前に見出し目次がある場合はフィードに含めて、<br>見出し目次のリンク先は投稿本文になるようにします。</p>
+<pre class="line-numbers language-diff"><code class="language-diff">{% raw %}
+diff --git source/atom.xml source/atom.xml
+index 83af3f8..035a610 100644
+<span class="token coord">--- source/atom.xml</span>
+<span class="token coord">+++ source/atom.xml</span>
+@@ -21,7 +21,13 @@ layout: nil
+     &lt;link href="{{ site.url }}{{ post.url }}">
+     &lt;updated>{{ post.date | date_to_xmlschema }}&lt;/updated>
+     &lt;id>{{ site.url }}{{ post.id }}&lt;/id>
+<span class="token deleted">-    &lt;content type="html">&lt;!--[CDATA[{{ post.content | expand_urls: site.url | cdata_escape }}]]-->&lt;/content></span>
+<span class="token inserted">+    &lt;content type="html">&lt;!--[CDATA[</span>
+<span class="token inserted">+      {{ post.content | excerpt | expand_urls: site.url | cdata_escape }}</span>
+<span class="token inserted">+      {% capture excerpted %}{{ post.content | has_excerpt }}{% endcapture %}</span>
+<span class="token inserted">+      {% if excerpted == 'true' %}</span>
+<span class="token inserted">+        &lt;a rel="full-article" href="{{ site.url }}{{ root_url }}{{ post.url }}">{{ site.excerpt_link | cdata_escape }}&lt;/a></span>
+<span class="token inserted">+      {% endif %}</span>
+<span class="token inserted">+    ]]-->&lt;/content></span>
+   
+   {% endfor %}
+ 
+{% endraw %}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="課題"><a href="#課題" class="headerlink" title="課題"></a>課題</h1><ul>
+<li>見出し目次のリンクに対応する本文中のDOM要素をアンカータグのname属性だけでサーチしているため、それ以外のname属性付きアンカータグを含むような記事では誤動作します。</li>
+<li>見出し目次のリンクが<code>bundle exec rake preview</code>でも絶対パスになります。</li>
+<li>octopressの更新によってjekyllのバージョンが上がってしまった場合には再度対処が必要になる可能性があります。</li>
+</ul>
+<p>最初に書いたように筋悪な方法だと思ってるのでプルリクとかもしません。</p>
+<p>もっとスマートな方法知ってる人いたらtwitterで教えて下さい。</p>
+<p>追記：twitterで筋の良い方法を教えて頂きましたので、その紹介の記事を書きました。</p>
+<p><a href="http://chopschips.net/blog/2014/07/08/octopress-toc-improved/">Octopressで見出しの目次を作る方法 改 - 割り箸ポテチ</a></p>
+
+      
+      
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://chopschips.net/blog/2014/06/16/octopress-toc/" data-id="cl2312pse00056urcxmd9zuw7" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/octopress/">octopress</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/06/17/wovn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer Post</strong>
+      <div class="article-nav-title">
+        
+          JavaScript一行でサイトを多言語化するサービスWOVN.ioを試してみました
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2014/06/15/rbenv/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older Post</strong>
+      <div class="article-nav-title">ruby 実行環境の構築 - rbenvの使い方とその仕組み</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-about" class="widget-title">About</h3>
+    <div class="widget">
+      
+        <p> Kawahara Taisuke / 河原太介 </p>
+      
+      
+        <p> <a href="http://twitter.com/kwhrtsk">@kwhrtsk</a> </p>
+      
+      </p>
+      
+        <p> 京都でソフトウェアエンジニアをしています。興味の対象はインフラ、サーバアプリケーションからフロントエンドまでWebサービスに関わるエンジニアリング全般。最近は特にRails、Apache Spark、React、golang周辺。 </p>
+      
+      
+        <p> このブログは筆者の所属する企業およびその業務とは一切関係のない個人の活動です。 </p>
+      
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-recent-posts" class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/03/03/rust-lldb-workaround/">VSCodeでRustのテストコードをデバッグできない問題</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/05/30/helm-with-rails/">Railsアプリ開発のためのDocker/Kubernetes入門6 Helm編</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/05/30/practical-kubernetes-with-rails/">Railsアプリ開発のためのDocker/Kubernetes入門5 Kubernetes応用編</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/05/30/kubernetes-with-rails/">Railsアプリ開発のためのDocker/Kubernetes入門4 Kubernetes基礎編</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/05/30/kubernetes-tutorial/">Railsアプリ開発のためのDocker/Kubernetes入門3 Kubernetes入門編</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tagcloud" class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VirtualBox/" style="font-size: 10px;">VirtualBox</a> <a href="/tags/WOVN-io/" style="font-size: 10px;">WOVN.io</a> <a href="/tags/Yosemite/" style="font-size: 10px;">Yosemite</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bento/" style="font-size: 10px;">bento</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/chef/" style="font-size: 15px;">chef</a> <a href="/tags/docker/" style="font-size: 18.33px;">docker</a> <a href="/tags/emoji/" style="font-size: 10px;">emoji</a> <a href="/tags/errbit/" style="font-size: 10px;">errbit</a> <a href="/tags/helm/" style="font-size: 10px;">helm</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/knife-zero/" style="font-size: 10px;">knife-zero</a> <a href="/tags/kubernetes/" style="font-size: 16.67px;">kubernetes</a> <a href="/tags/lldb/" style="font-size: 10px;">lldb</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/octopress/" style="font-size: 13.33px;">octopress</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/rbenv/" style="font-size: 10px;">rbenv</a> <a href="/tags/ruby/" style="font-size: 18.33px;">ruby</a> <a href="/tags/rust/" style="font-size: 10px;">rust</a> <a href="/tags/scala/" style="font-size: 10px;">scala</a> <a href="/tags/sidekiq/" style="font-size: 10px;">sidekiq</a> <a href="/tags/vagrant/" style="font-size: 13.33px;">vagrant</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/本/" style="font-size: 10px;">本</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tag" class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/">VirtualBox</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WOVN-io/">WOVN.io</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yosemite/">Yosemite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bento/">bento</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chef/">chef</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/errbit/">errbit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/knife-zero/">knife-zero</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lldb/">lldb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rbenv/">rbenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rust/">rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sidekiq/">sidekiq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vagrant/">vagrant</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/">zsh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/本/">本</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-category" class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HowTo/">HowTo</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/I18n/">I18n</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Research/">Research</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/制作物/">制作物</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/書評/">書評</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/開発環境/">開発環境</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">5月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">4月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">8月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">4月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">9月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">7月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">6月 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyrights &copy; 2022 Kawahara Taisuke / 河原太介 All Rights Reserved. <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+      Themed by <a href="https://github.com/kwhrtsk/hexo-theme-ingenuous">Ingenuous</a> (based on <a href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>).
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
